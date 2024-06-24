@@ -62,4 +62,8 @@ public class RisqueController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
     }
+    @GetMapping("/search")
+    public Risque searchRisque(@RequestParam String nom) {
+        return risqueRepository.findBynom(nom);
+    }
 }

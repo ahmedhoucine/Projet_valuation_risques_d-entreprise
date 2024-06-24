@@ -11,7 +11,7 @@ public class Risque {
     @Column(name = "risque_id")
     private Integer risqueId;
 
-    @Column(name = "nom")
+    @Column(name = "nom",unique = true)
     private String nom;
 
     @Column(name = "description")

@@ -1,10 +1,6 @@
 package com.example.backend.entreprise.model;
 
-import com.example.backend.entrepriserisque.EntrepriseRisque;
-import com.example.backend.risque.model.Risque;
 import jakarta.persistence.*;
-import java.util.Set;
-import java.util.List;
 
 @Entity
 @Table(name = "entreprise")
@@ -14,7 +10,9 @@ public class Entreprise {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "entreprise_id")
     private Integer entrepriseId;
+
     private String nom;
+    @Column(name = "nom_legal", unique = true)
     private String nom_legal;
     private String adresse;
     private String email;
@@ -22,8 +20,15 @@ public class Entreprise {
     private String secteur_activite;
     private float chiffre_d_affaire;
     private String description;
+    private float pourcentagerisque;
 
+    public float getPourcentagerisque() {
+        return pourcentagerisque;
+    }
 
+    public void setPourcentagerisque(float pourcentagerisque) {
+        this.pourcentagerisque = pourcentagerisque;
+    }
 
     public Entreprise() {
 
@@ -99,7 +104,7 @@ public class Entreprise {
 
 
 
-    public Entreprise(Integer id, String nom, String nom_legal, String adresse, String email, String identifiant, String secteur_activite, float chiffre_d_affaire, String description) {
+    public Entreprise(Integer id, String nom, String nom_legal, String adresse, String email, String identifiant, String secteur_activite, float chiffre_d_affaire, String description, float pourcentagerisque) {
         this.entrepriseId = id;
         this.nom = nom;
         this.nom_legal = nom_legal;
@@ -109,6 +114,7 @@ public class Entreprise {
         this.secteur_activite = secteur_activite;
         this.chiffre_d_affaire = chiffre_d_affaire;
         this.description = description;
+        this.pourcentagerisque = pourcentagerisque;
     }
 
 

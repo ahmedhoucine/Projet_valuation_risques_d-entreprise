@@ -1,5 +1,5 @@
 export interface Risque {
-    id: number;
+    risqueId: number;
     nom: string;
     description: string;
     coefficient: number;

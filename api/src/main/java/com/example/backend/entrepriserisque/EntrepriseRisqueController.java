@@ -30,6 +30,11 @@ public class EntrepriseRisqueController {
     @Autowired
     private RisqueRepository risqueRepository;
 
+
+    @GetMapping
+    public List<EntrepriseRisque> getAllEntrepriseRisques() {
+        return entrepriseRisqueRepository.findAll();
+    }
     @PostMapping
     public ResponseEntity<EntrepriseRisque> createEntrepriseRisque(@RequestBody EntrepriseRisqueDTO entrepriseRisqueDTO) {
 
@@ -58,5 +63,15 @@ public class EntrepriseRisqueController {
                 .collect(Collectors.toList());
 
         return ResponseEntity.ok(simplifiedRisques);
+    }
+    @DeleteMapping("/{entrepriseId}")
+    public ResponseEntity<Void> deleteAllRisquesForEntreprise(@PathVariable("entrepriseId") Integer entrepriseId) {
+        List<EntrepriseRisque> entrepriseRisques = entrepriseRisqueRepository.findByEntrepriseId(entrepriseId);
+
+        for (EntrepriseRisque risque : entrepriseRisques) {
+            entrepriseRisqueRepository.deleteById(risque.getId());
+        }
+
+        return ResponseEntity.noContent().build();
     }
 }

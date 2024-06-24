@@ -24,10 +24,11 @@ export class RisquelistComponent implements OnInit {
     });
   }
   deleteRisque(index: number): void {
-    const risque = this.risques[index];
+    console.log(index);
     const confirmDelete = confirm('Are you sure you want to delete this item?');
     if (confirmDelete) {
-      this.risqueService.deleteRisque(risque.id).subscribe(() => {
+      this.risqueService.deleteRisque(index).subscribe(() => {
+        this.fetchRisques();
         this.risques.splice(index, 1);
       });
     }

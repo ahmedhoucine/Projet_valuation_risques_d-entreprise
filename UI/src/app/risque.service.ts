@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Risque } from './risque.model';
 
 @Injectable({
   providedIn: 'root'
@@ -30,7 +31,10 @@ export class RisqueService {
   }
 
   updateRisque(risque: any): Observable<any> {
-    const url = `${this.apiUrl}/${risque.id}`;
+    const url = `${this.apiUrl}/${risque.risqueId}`;
     return this.http.put<any>(url, risque);
+  }
+  searchRisque(name: string): Observable<Risque[]> {
+    return this.http.get<Risque[]>(`${this.apiUrl}/search?nom=${name}`);
   }
 }
