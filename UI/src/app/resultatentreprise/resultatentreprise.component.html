@@ -1,0 +1,23 @@
+<div id="app" class="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl mt-10">
+        <div class="md:flex">
+            <div class="p-8">
+                <div class="uppercase tracking-wide text-sm text-indigo-500 font-semibold">Information d'entreprise</div>
+                <p class="block mt-1 text-lg leading-tight font-medium text-black">Name: <span class="text-gray-700">{{ entreprise.nom }}</span></p>
+                <p class="block mt-1 text-lg leading-tight font-medium text-black">Legal Name: <span class="text-gray-700">{{ entreprise.nom_legal }}</span></p>
+                <p class="block mt-1 text-lg leading-tight font-medium text-black">Address: <span class="text-gray-700">{{ entreprise.adresse }}</span></p>
+                <p class="block mt-1 text-lg leading-tight font-medium text-black">Email: <span class="text-gray-700">{{ entreprise.email }}</span></p>
+                <p class="block mt-1 text-lg leading-tight font-medium text-black">Identifier: <span class="text-gray-700">{{ entreprise.identifiant }}</span></p>
+                <p class="block mt-1 text-lg leading-tight font-medium text-black">Sector: <span class="text-gray-700">{{ entreprise.secteur_activite }}</span></p>
+                <p class="block mt-1 text-lg leading-tight font-medium text-black">Annual Revenue: <span class="text-gray-700">${{ entreprise.chiffre_d_affaire }}</span></p>
+                <p class="block mt-1 text-lg leading-tight font-medium text-black">Description: <span class="text-gray-700">{{ entreprise.description }}</span></p>
+                <p class="block mt-1 text-lg leading-tight font-medium text-black">Risk Percentage: <span class="text-gray-700">{{ entreprise.pourcentagerisque }}%</span></p>
+                <p class="block mt-1 text-lg leading-tight font-medium text-red-700 pt-4">Les Risques:</p>
+
+            <div *ngFor="let risque of risques" class="pt-3">
+                <p class="block mt-1 text-lg leading-tight font-medium text-red-700">Risk nom: <span class="text-gray-700">{{ risque.risque.nom }}</span></p>
+                <p class="block mt-1 text-lg leading-tight font-medium text-black">Risk précaution: <span class="text-gray-700">{{ risque.risque.precaution }}</span></p>
+
+            </div>
+            </div>
+        </div>
+</div>

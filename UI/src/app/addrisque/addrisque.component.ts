@@ -16,6 +16,7 @@ export class AddRisqueComponent implements OnInit {
     precaution: ''
   };
   oldrisque: any = null;
+  errorMessage:any;
 
   constructor(private risqueService: RisqueService, private router: Router) {}
 
@@ -28,19 +29,30 @@ export class AddRisqueComponent implements OnInit {
   }
 
   addRisque(): void {
-    this.risqueService.addRisque(this.newRisque).subscribe(() => {
-      this.router.navigate(['/risquelist']);
-    });
+    this.risqueService.addRisque(this.newRisque).subscribe(
+      () => {
+        this.router.navigate(['/risquelist']);
+      },
+      (error) => {
+        this.errorMessage = 'nom déja utiliser'; // Capture error message from backend
+      }
+    );
   }
 
   updateRisque(): void {
-    this.risqueService.updateRisque(this.newRisque).subscribe(() => {
-      this.router.navigate(['/risquelist']);
-      localStorage.removeItem('risque');
-    });
+    this.risqueService.updateRisque(this.newRisque).subscribe(
+      () => {
+        this.router.navigate(['/risquelist']);
+        localStorage.removeItem('risque');
+      },
+      (error) => {
+        this.errorMessage = 'nom déja utiliser'; // Capture error message from backend
+      }
+    );
   }
 
   onSubmit() {
+    this.errorMessage = ''; // Clear previous error message
     if (this.oldrisque) {
       this.updateRisque();
     } else {

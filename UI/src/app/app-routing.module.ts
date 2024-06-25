@@ -5,6 +5,7 @@ import { RisquelistComponent } from './risquelist/risquelist.component';
 import { AddRisqueComponent } from './addrisque/addrisque.component';
 import { EditrisqueComponent } from './editrisque/editrisque.component';
 import { AnalyseclientComponent } from './analyseclient/analyseclient.component';
+import { ResultatentrepriseComponent } from './resultatentreprise/resultatentreprise.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -13,6 +14,8 @@ const routes: Routes = [
   { path: 'addrisque', component: AddRisqueComponent },
   { path: 'editrisque', component: EditrisqueComponent },
   { path: 'analyseclient', component: AnalyseclientComponent },
+  { path: 'resultatclient', component: ResultatentrepriseComponent },
+ 
  
 ];
 

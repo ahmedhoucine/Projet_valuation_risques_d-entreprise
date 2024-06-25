@@ -4,6 +4,7 @@ import { EntrepriseService } from '../entreprise.service';
 import * as XLSX from 'xlsx';
 import { EntrepriserisqueService } from '../entrepriserisque.service';
 import { Entreprise } from '../entreprise.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-analyseclient',
@@ -21,7 +22,7 @@ export class AnalyseclientComponent {
   coefficient_total = 0;
   entreprise_id=0;
   
-  constructor(private risqueService: RisqueService, private entrepriseService: EntrepriseService, private entrepriserisqueservice: EntrepriserisqueService){
+  constructor(private router: Router,private risqueService: RisqueService, private entrepriseService: EntrepriseService, private entrepriserisqueservice: EntrepriserisqueService){
 
   }
 
@@ -53,6 +54,10 @@ export class AnalyseclientComponent {
       // Accessing each property directly
       this.entreprise= this.entreprise[0]
     }
+  }
+  voirResultat(){
+    localStorage.setItem('entreprise', JSON.stringify(this.entreprise));
+    this.router.navigate(['/resultatclient']);
   }
   async onSubmit() {
     this.isLoading = true;
@@ -88,7 +93,6 @@ export class AnalyseclientComponent {
       } catch (error) {
 
         console.error('Error response:', error);
-        // Continue even if adding entreprise fails
       }
   
       // Fetch all_risques
@@ -165,6 +169,7 @@ export class AnalyseclientComponent {
       // Update pourcentage_risque
       try {
         const response = await this.entrepriseService.updatePourcentageRisque(this.entreprise_id, this.risque_total).toPromise();
+        this.entreprise=response;
         console.log('Update successful', response);
         // Handle successful update, e.g., show a message to the user
       } catch (error) {
@@ -180,7 +185,5 @@ export class AnalyseclientComponent {
       this.finish= true;
     }
   }
-  
-  
   
 }

@@ -64,6 +64,12 @@ public class EntrepriseRisqueController {
 
         return ResponseEntity.ok(simplifiedRisques);
     }
+    @GetMapping("/{entrepriseId}/risque")
+    public ResponseEntity<?> getRisquesByEntrepriseId(@PathVariable("entrepriseId") Integer entrepriseId) {
+        List<EntrepriseRisque> entrepriseRisques = entrepriseRisqueRepository.findByEntrepriseId(entrepriseId);
+
+        return ResponseEntity.ok(entrepriseRisques);
+    }
     @DeleteMapping("/{entrepriseId}")
     public ResponseEntity<Void> deleteAllRisquesForEntreprise(@PathVariable("entrepriseId") Integer entrepriseId) {
         List<EntrepriseRisque> entrepriseRisques = entrepriseRisqueRepository.findByEntrepriseId(entrepriseId);

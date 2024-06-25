@@ -10,6 +10,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { AddRisqueComponent } from './addrisque/addrisque.component';
 import { EditrisqueComponent } from './editrisque/editrisque.component';
 import { AnalyseclientComponent } from './analyseclient/analyseclient.component';
+import { ResultatentrepriseComponent } from './resultatentreprise/resultatentreprise.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { AnalyseclientComponent } from './analyseclient/analyseclient.component'
     RisquelistComponent,
     AddRisqueComponent,
     EditrisqueComponent,
-    AnalyseclientComponent
+    AnalyseclientComponent,
+    ResultatentrepriseComponent
   ],
   imports: [
     BrowserModule,
