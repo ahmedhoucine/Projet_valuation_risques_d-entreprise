@@ -2,9 +2,12 @@ import { Component } from '@angular/core';
 import { RisqueService } from '../risque.service';
 import { EntrepriseService } from '../entreprise.service';
 import * as XLSX from 'xlsx';
+
 import { EntrepriserisqueService } from '../entrepriserisque.service';
 import { Entreprise } from '../entreprise.model';
 import { Router } from '@angular/router';
+
+
 
 @Component({
   selector: 'app-analyseclient',

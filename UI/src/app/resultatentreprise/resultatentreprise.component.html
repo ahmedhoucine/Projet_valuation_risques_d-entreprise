@@ -13,11 +13,18 @@
                 <p class="block mt-1 text-lg leading-tight font-medium text-black">Risk Percentage: <span class="text-gray-700">{{ entreprise.pourcentagerisque }}%</span></p>
                 <p class="block mt-1 text-lg leading-tight font-medium text-red-700 pt-4">Les Risques:</p>
 
-            <div *ngFor="let risque of risques" class="pt-3">
+            <div *ngFor="let risque of sorted_risques" class="pt-3">
                 <p class="block mt-1 text-lg leading-tight font-medium text-red-700">Risk nom: <span class="text-gray-700">{{ risque.risque.nom }}</span></p>
                 <p class="block mt-1 text-lg leading-tight font-medium text-black">Risk précaution: <span class="text-gray-700">{{ risque.risque.precaution }}</span></p>
 
             </div>
             </div>
         </div>
-</div>
+
+        <button
+        (click)="generatePdf()"
+        class="bg-blue-500 hover:bg-blue-700 text-white font-bold  py-2 px-4 rounded shadow-lg transition duration-300"
+      >
+        Generate PDF
+      </button>
+      </div>

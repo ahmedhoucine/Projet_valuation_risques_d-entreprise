@@ -11,6 +11,7 @@ import { AddRisqueComponent } from './addrisque/addrisque.component';
 import { EditrisqueComponent } from './editrisque/editrisque.component';
 import { AnalyseclientComponent } from './analyseclient/analyseclient.component';
 import { ResultatentrepriseComponent } from './resultatentreprise/resultatentreprise.component';
+import { HistoriqueComponent } from './historique/historique.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { ResultatentrepriseComponent } from './resultatentreprise/resultatentrep
     AddRisqueComponent,
     EditrisqueComponent,
     AnalyseclientComponent,
-    ResultatentrepriseComponent
+    ResultatentrepriseComponent,
+    HistoriqueComponent
   ],
   imports: [
     BrowserModule,
