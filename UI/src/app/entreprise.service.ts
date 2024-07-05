@@ -26,5 +26,9 @@ export class EntrepriseService {
     const params = new HttpParams().set('pourcentagerisque', pourcentagerisque.toString());
     return this.http.put(`${this.apiUrl}/${id}/pourcentagerisque`, {}, { params });
   }
+  deleteentreprise(id: number): Observable<any> {
+    return this.http.get<Entreprise>(`${this.apiUrl}/${id}`);
+
+  }
 }
 

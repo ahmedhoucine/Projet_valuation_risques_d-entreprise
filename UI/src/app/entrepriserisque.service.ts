@@ -11,7 +11,9 @@ export class EntrepriserisqueService {
 
   constructor(private http: HttpClient) {}
 
-  
+  getEntrepriseRisque(): Observable<any> {
+    return this.http.get<any>(this.apiUrl);
+  }
   getEntrepriseRisques(entreprise_id:any): Observable<any[]> {
     const url = `${this.apiUrl}/${entreprise_id}/risque`;
     return this.http.get<any[]>(url);

@@ -11,4 +11,5 @@ import java.util.List;
 public interface EntrepriseRisqueRepository extends JpaRepository<EntrepriseRisque, Integer> {
     List<EntrepriseRisque> findByEntrepriseId(Integer entrepriseId);
 
+
 }

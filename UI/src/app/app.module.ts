@@ -12,6 +12,8 @@ import { EditrisqueComponent } from './editrisque/editrisque.component';
 import { AnalyseclientComponent } from './analyseclient/analyseclient.component';
 import { ResultatentrepriseComponent } from './resultatentreprise/resultatentreprise.component';
 import { HistoriqueComponent } from './historique/historique.component';
+import { StatsComponent } from './stats/stats.component';
+import { NgApexchartsModule } from "ng-apexcharts";
 
 @NgModule({
   declarations: [
@@ -23,13 +25,16 @@ import { HistoriqueComponent } from './historique/historique.component';
     EditrisqueComponent,
     AnalyseclientComponent,
     ResultatentrepriseComponent,
-    HistoriqueComponent
+    HistoriqueComponent,
+    StatsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    NgApexchartsModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

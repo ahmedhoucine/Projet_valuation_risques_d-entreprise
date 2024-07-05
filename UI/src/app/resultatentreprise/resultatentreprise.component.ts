@@ -30,6 +30,8 @@ export class ResultatentrepriseComponent implements OnInit{
     console.log(this.risques)
     if (this.risques.length > 3){
       this.sorted_risques= this.risques.slice(0, 3);
+    }else{
+      this.sorted_risques=this.risques
     }
     console.log(this.sorted_risques)
   }
@@ -164,6 +166,13 @@ export class ResultatentrepriseComponent implements OnInit{
       // Add a blank line to separate each 'risque'
       documentDefinition.content.push({ text: ' ', style: 'content' });
     });
-    pdfMake.createPdf(documentDefinition).open();
+    return(documentDefinition);
+  }
+  openpdf(){
+    pdfMake.createPdf(this.generatePdf()).open();
+
+  }
+  downloadpdf(){
+    pdfMake.createPdf(this.generatePdf()).download();
   }
 }

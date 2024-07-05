@@ -70,6 +70,7 @@ public class EntrepriseRisqueController {
 
         return ResponseEntity.ok(entrepriseRisques);
     }
+
     @DeleteMapping("/{entrepriseId}")
     public ResponseEntity<Void> deleteAllRisquesForEntreprise(@PathVariable("entrepriseId") Integer entrepriseId) {
         List<EntrepriseRisque> entrepriseRisques = entrepriseRisqueRepository.findByEntrepriseId(entrepriseId);

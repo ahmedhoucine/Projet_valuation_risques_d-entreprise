@@ -7,6 +7,7 @@ import { EditrisqueComponent } from './editrisque/editrisque.component';
 import { AnalyseclientComponent } from './analyseclient/analyseclient.component';
 import { ResultatentrepriseComponent } from './resultatentreprise/resultatentreprise.component';
 import { HistoriqueComponent } from './historique/historique.component';
+import { StatsComponent } from './stats/stats.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -17,6 +18,8 @@ const routes: Routes = [
   { path: 'analyseclient', component: AnalyseclientComponent },
   { path: 'resultatclient', component: ResultatentrepriseComponent },
   { path: 'historique', component: HistoriqueComponent },
+  { path: 'statistique', component: StatsComponent },
+
 
  
 ];

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RisqueService } from '../risque.service';
 import { Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-addrisque',
@@ -51,7 +52,11 @@ export class AddRisqueComponent implements OnInit {
     );
   }
 
-  onSubmit() {
+  onSubmit(form: NgForm) {
+    if (form.invalid) {
+      this.errorMessage = 'Please fill out all required fields.';
+      return;
+  }
     this.errorMessage = ''; // Clear previous error message
     if (this.oldrisque) {
       this.updateRisque();
