@@ -31,12 +31,15 @@ public class AgentEntrepriseController {
         AgentEntreprise agentEntreprise = new AgentEntreprise();
         agentEntreprise.setEntreprise(entreprise);
 
-        // Set the filePath from AgentEntrepriseRequest to AgentEntreprise
+        // Set attributes from AgentEntrepriseRequest to AgentEntreprise
         agentEntreprise.setFilePath(request.getFilePath());
+        agentEntreprise.setPosition(request.getPosition());
+        agentEntreprise.setResultat(request.getResultat());
 
         AgentEntreprise savedAgentEntreprise = agentEntrepriseRepository.save(agentEntreprise);
         return ResponseEntity.ok(savedAgentEntreprise);
     }
+
 
 
     // Get all AgentEntreprises
@@ -84,5 +87,22 @@ public class AgentEntrepriseController {
         } else {
             return ResponseEntity.notFound().build();
         }
+    }
+    @DeleteMapping("/by-entreprise/{entrepriseId}")
+    public ResponseEntity<Void> deleteAllAgentEntreprisesByEntrepriseId(@PathVariable Long entrepriseId) {
+        // First, find all AgentEntreprises for the given entrepriseId
+        List<AgentEntreprise> agentEntreprises = agentEntrepriseRepository.findByEntrepriseId(entrepriseId);
+
+        // If no AgentEntreprises found, return not found status
+        if (agentEntreprises.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+
+        // Delete each AgentEntreprise found
+        for (AgentEntreprise agentEntreprise : agentEntreprises) {
+            agentEntrepriseRepository.delete(agentEntreprise);
+        }
+
+        return ResponseEntity.ok().build();
     }
 }

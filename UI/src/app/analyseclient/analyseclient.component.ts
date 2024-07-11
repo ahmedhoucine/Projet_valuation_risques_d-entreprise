@@ -6,6 +6,8 @@ import * as XLSX from 'xlsx';
 import { EntrepriserisqueService } from '../entrepriserisque.service';
 import { Entreprise } from '../entreprise.model';
 import { Router } from '@angular/router';
+import { ApiService } from '../api.service';
+import { AgentEntrepriseService } from '../agent-entreprise.service';
 
 
 
@@ -24,8 +26,11 @@ export class AnalyseclientComponent {
   risque_total =  0;
   coefficient_total = 0;
   entreprise_id=0;
+  agententreprise: any[] = [];
+  responses: any[] = [];
+  count = 0;
   
-  constructor(private router: Router,private risqueService: RisqueService, private entrepriseService: EntrepriseService, private entrepriserisqueservice: EntrepriserisqueService){
+  constructor(private agentEntrepriseService: AgentEntrepriseService,private apiService: ApiService,private router: Router,private risqueService: RisqueService, private entrepriseService: EntrepriseService, private entrepriserisqueservice: EntrepriserisqueService){
 
   }
 
@@ -50,12 +55,28 @@ export class AnalyseclientComponent {
 
       this.risque_entreprise = XLSX.utils.sheet_to_json(workBook.Sheets[sheetNames[1]]);
       this.new_risque = XLSX.utils.sheet_to_json(workBook.Sheets[sheetNames[2]]);
+      this.agententreprise = XLSX.utils.sheet_to_json(workBook.Sheets[sheetNames[3]]);
+      console.log(this.agententreprise)
+      console.log(this.agententreprise[0].nom)
+      //this.callPythonApi(this.agententreprise[0].nom)
 
       console.log(this.entreprise);
       console.log(this.risque_entreprise);
       console.log(this.new_risque);
       // Accessing each property directly
       this.entreprise= this.entreprise[0]
+    }
+  }
+  async callPythonApi(agentNom: string) {
+
+    
+
+    try {
+      const response = await this.apiService.runPythonScript('C:\\Users\\Ahmed\\Desktop\\AI\\script.py', agentNom).toPromise();
+      console.log('Python script response:', response);
+     this.responses.push(response);  // Save response to the list
+    } catch (error) {
+      console.error('An error occurred while calling Python API for agent:', error);
     }
   }
   voirResultat(){
@@ -179,6 +200,40 @@ export class AnalyseclientComponent {
         console.error('Update failed', error);
         // Handle error, e.g., show an error message to the user
       }
+      // Call Python API for each agent and wait for response
+      try {
+        await this.agentEntrepriseService.deleteAllAgentEntreprisesByEntrepriseId(this.entreprise_id).toPromise();
+        console.log(`All agents for entreprise ${this.entreprise_id} deleted successfully.`);
+      } catch (error) {
+        console.error('An error occurred while deleting agents:', error);
+      }
+  
+      
+      const agentPromises = this.agententreprise.map(async (agent: any,index: number) => {
+        this.isLoading = true;
+
+        try {
+            await this.callPythonApi(agent.nom);
+           
+        } catch (error) {
+            console.error('An error occurred while calling Python API for agent:', error);
+        }
+        console.log(index)
+        this.responses[this.count].entrepriseId = this.entreprise_id
+        this.responses[this.count].position = agent.position
+        console.log(this.responses)
+        this.count = this.count+1;
+        await this.agentEntrepriseService.saveResponse(this.responses[index]).toPromise();
+        console.log('Response saved successfully:', this.responses[index]);
+        
+      
+
+
+    });
+    
+   
+    await Promise.all(agentPromises); 
+
   
       console.log(this.risque_total);
     } catch (error) {

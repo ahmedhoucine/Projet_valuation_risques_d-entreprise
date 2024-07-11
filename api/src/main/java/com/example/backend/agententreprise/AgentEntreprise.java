@@ -1,4 +1,5 @@
 package com.example.backend.agententreprise;
+
 import com.example.backend.entreprise.model.Entreprise;
 import jakarta.persistence.*;
 
@@ -17,6 +18,12 @@ public class AgentEntreprise {
 
     @Column(name = "file_path")
     private String filePath;
+
+    @Column(name = "position")
+    private String position;
+
+    @Column(name = "resultat")
+    private Float resultat;
 
     // Getters and setters
     public Long getId() {
@@ -41,5 +48,21 @@ public class AgentEntreprise {
 
     public void setFilePath(String filePath) {
         this.filePath = filePath;
+    }
+
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
+    }
+
+    public Float getResultat() {
+        return resultat;
+    }
+
+    public void setResultat(Float resultat) {
+        this.resultat = resultat;
     }
 }
