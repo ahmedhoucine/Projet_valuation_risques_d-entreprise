@@ -17,5 +17,8 @@ export class AgentEntrepriseService {
   saveResponse(response: any): Observable<any> {
     return this.http.post(this.baseUrl, response);
   }
+  getAgentsByEntreprise(id: number): Observable<any> {
+    return this.http.get(`${this.baseUrl}/by-entreprise/${id}`);
+  }
 
 }

@@ -218,14 +218,13 @@ export class AnalyseclientComponent {
         } catch (error) {
             console.error('An error occurred while calling Python API for agent:', error);
         }
-        console.log(index)
         this.responses[this.count].entrepriseId = this.entreprise_id
         this.responses[this.count].position = agent.position
-        console.log(this.responses)
-        this.count = this.count+1;
-        await this.agentEntrepriseService.saveResponse(this.responses[index]).toPromise();
-        console.log('Response saved successfully:', this.responses[index]);
+        console.log(this.responses[this.count])
         
+        await this.agentEntrepriseService.saveResponse(this.responses[this.count]).toPromise();
+        console.log('Response saved successfully:', this.responses[this.count]);
+        this.count = this.count+1;
       
 
 

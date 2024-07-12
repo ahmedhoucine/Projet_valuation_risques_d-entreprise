@@ -18,6 +18,19 @@
                 <p class="block mt-1 text-lg leading-tight font-medium text-black">Risk précaution: <span class="text-gray-700">{{ risque.risque.precaution }}</span></p>
 
             </div>
+            <p class="block mt-1 text-lg leading-tight font-medium text-red-700 pt-4">Quelques articles sur les décideurs:</p>
+
+            <div *ngFor="let agent of final_agents" class="mb-4">
+              <p class="block mt-1 text-lg leading-tight font-medium text-black">{{agent[0]}} le {{agent[1]}} de {{ entreprise.nom }}</p>
+              <p *ngFor="let article of agent.slice(3)" class="text-gray-700 mb-4">{{article[0]}}</p>
+              <p class="block mt-1 text-lg leading-tight font-medium text-black">Resultat de l'analyse de ces articles: <span class="text-red-700" >{{agent[2].toFixed(2)}}</span></p>
+
+
+            </div>
+
+
+
+
             </div>
         </div>
 
