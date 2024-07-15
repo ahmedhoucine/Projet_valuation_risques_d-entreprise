@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 @RestController
 public class FileController {
 
-    private static final String CSV_FILE_PATH = "C:\\Users\\Ahmed\\Desktop\\Projet Stage\\api\\";
+    private static final String CSV_FILE_PATH = "C:\\Users\\Ahmed\\Desktop\\Projet Stage\\api\\csvs\\";
 
     @GetMapping("/read-csv")
     public ResponseEntity<List<String[]>> readCsv(@RequestParam String filename) {

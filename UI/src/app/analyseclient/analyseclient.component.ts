@@ -72,6 +72,7 @@ export class AnalyseclientComponent {
     
 
     try {
+      //change the path from here and from the script where to save to .csv files that's all what u need to change 
       const response = await this.apiService.runPythonScript('C:\\Users\\Ahmed\\Desktop\\AI\\script.py', agentNom).toPromise();
       console.log('Python script response:', response);
      this.responses.push(response);  // Save response to the list
